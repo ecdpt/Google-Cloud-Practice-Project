@@ -1,0 +1,54 @@
+Lab: Creating Virtual Machines
+Objectives:
+1. Create 2 standard VMs
+2. Create custom VMs
+Task 1: Create a utility virtual machine
+Steps:
+1. Gather the parameters
+	Name: instance-1
+	Region: us-central1
+	Zone: us-central1-c
+	Machine type: n1-standard-1 (1 vCPUs, 3.75 GB memory)
+	External IP: none
+2. Execute the following commands: 
+	gcloud compute instances create instance-1 --zone=us-central1-a
+		--machine-type n1-standard-1 --no-address 
+Task 2: Create a Windows virtual machine
+Steps:
+1. Gather parameters:
+	Name: instance-2
+	Region: europe-west2
+	Zone: europe-west2-a
+	Machine type: n1-standard-2(2 vCPUs, 7.5 GB memory
+	Operating system: Windows Server 2016 Datacenter Core
+	Boot disk type: SSD persistent disk
+	Size (GB): 100
+2. Execute the following commands:
+	gcloud compute instances create instance-2 --zone=europe-west2
+	--machine-type=n1-standard-2  --image=Windows Server 2016 Datacenter Core
+Task 3: Create a custom virtual machine
+Steps:
+1. Gather the parameters:
+	Region: us-west1
+	Zone: us-west1-b
+	Cores: 6 vCPU
+	Memory: 32 GB
+2. Set the zone with this command:
+	gcloud config set compute/zone us-west1-b
+3. Set the region with this command:
+	gcloud config set compute/region  us-west1
+4. Execute the following commands:
+gcloud compute instances create custom-instance \
+    --custom-cpu 6 --custom-memory 32768MB --custom-vm-type n2
+5. ssh to the custom VM with the command:
+	gcloud compute ssh custom-instance --zone=us-west1-b
+6. To see information about unused and used memory and swap space on your custom VM, run the following command:
+	free
+7. To see details about the RAM installed on your VM, run the following command:
+	sudo dmidecode -t 17
+8. To verify the number of processors, run the following command:
+	nproc
+9. To see details about the CPUs installed on your VM, run the following command:
+	lscpu
+10. To exit the SSH terminal, run the following command:
+	exit

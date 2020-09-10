@@ -1,0 +1,66 @@
+Lab: Google Cloud Fundamentals: Getting Started with App Engine
+Objectives
+1. In this lab, you learn how to perform the following tasks:
+Initialize App Engine.
+2. Preview an App Engine application running locally in Cloud Shell.
+3. Deploy an App Engine application, so that others can reach it.
+Task 1:  Sign in to the Google Cloud Platform (GCP) Console
+steps:
+1. Open incognito window
+2. Click Start Lab button
+3. Observe the log in credentials
+4. Click Open Google console
+5. Enter the log in credential as prompted
+Activate Google Cloud Shell
+Steps:
+1. In GCP console, on the top right toolbar, click the Open Cloud Shell button.
+2. Click Continue. cloud - shell_continue.png
+3. List the active account name with this command:
+	gcloud auth list
+4.List the project ID with this command:
+	gcloud config list project
+Task 1: Initialize App Engine
+Steps:
+1. Initialize the App Engine app with your project and choose its region:
+	gcloud app create --project=$DEVSHELL_PROJECT_ID
+2. Select the region where you want your App Engine application located.
+3. Clone the source code repository for a sample application in the hello_world directory:
+	git clone https://github.com/GoogleCloudPlatform/python-docs-samples
+4. Navigate to the source directory:
+	cd python-docs-samples/appengine/standard_python3/hello_world
+
+Task 2: Run Hello World application locally
+Steps:
+1. At the Cloud Shell command prompt. Execute the following command to download and update the packages list:
+	sudo apt-get update
+2. Set up a virtual environment in which you will run your application with this command:
+	sudo apt-get install virtualenv
+3. If prompted [Y/n], press Y and then Enter.
+4. Install the virtual enviroment:
+	virtualenv -p python3 venv
+5. Activate the virtual environment:
+	source venv/bin/activate
+6. Navigate to your project directory and install dependencies.
+	pip install  -r requirements.txt
+7. Run the application:
+	python main.py
+8. Preview the application on port 8080 
+9. Press Ctrl+C to abort the deployed service and return to cloud shell
+Task 3: Deploy and run Hello World on App Engine
+Steps:
+1. Navigate to the source directory:
+	cd ~/python-docs-samples/appengine/standard_python3/hello_world
+2. Deploy your Hello World application.
+	gcloud app deploy
+3. If prompted "Do you want to continue (Y/n)?", press Y and then Enter.
+This app deploy command uses the app.yaml file to identify project configuration.
+4. Launch your browser to view the app at http://YOUR_PROJECT_ID.appspot.com
+	gcloud app browse
+5. Copy and paste the URL into a new browser window.
+Task 4: Disable the application
+Steps:
+1. App Engine offers no option to Undeploy an application. 
+2. You can use Cloud console as follows:
+  	Navigation menu (Navigation menu), click App Engine > Settings.
+3. Click Disable application.
+4.  Enter the App ID and click DISABLE.
